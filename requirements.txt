@@ -1,0 +1,13 @@
+langchain>=0.2.14
+langchain-community>=0.2.12
+langchain-ollama>=0.2.0
+
+# NUEVO: wrapper oficial moderno de Chroma para LangChain
+langchain-chroma>=0.1.2
+# (trae chromadb 0.5.x como dependencia)
+
+pypdf>=4.2.0
+python-docx>=1.1.2
+docx2txt>=0.8       # necesario para Docx2txtLoader
+streamlit>=1.36.0
+python-dotenv>=1.0.1
