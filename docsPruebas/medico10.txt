@@ -1,0 +1,8 @@
+Historia clínica del paciente: Carmen Díaz
+Edad: 40 años
+Antecedentes médicos: embarazo complicado con preeclampsia, hipotiroidismo subclínico diagnosticado en controles posparto.
+Diagnóstico principal: Hipotiroidismo clínico.
+Evolución: Fatiga persistente, piel seca, aumento de peso de 6 kg en el último año, caída de cabello progresiva. 
+Tratamiento actual: Levotiroxina 75 mcg diarios. 
+Recomendaciones: control de TSH cada 6 meses, dieta equilibrada rica en yodo, ejercicio regular para controlar el peso, seguimiento ginecológico por antecedentes obstétricos. 
+Notas adicionales: la paciente refiere mejoría parcial con tratamiento, pero aún muestra síntomas residuales. Se considera ajuste de dosis.

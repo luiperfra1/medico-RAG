@@ -1,0 +1,48 @@
+# === Python básico ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Entornos virtuales
+.venv/
+env/
+venv/
+ENV/
+.ipynb_checkpoints/
+
+# === Streamlit / LangChain ===
+# Índices persistentes de ChromaDB
+vectordb/
+# Archivos subidos por usuarios
+uploads/
+# Carpeta data opcional de pruebas
+data/
+
+# === Config / secretos ===
+.env
+*.env
+
+# === Archivos temporales ===
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+
+# === Salidas de compilación o empaquetado ===
+dist/
+build/
+
+# === Otros que no quieres subir ===
+# Resultados experimentales
+*.sqlite3
+*.bin
+*.pkl
+*.zip

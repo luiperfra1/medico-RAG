@@ -1,0 +1,8 @@
+Historia clínica del paciente: Alberto Ruiz
+Edad: 50 años
+Antecedentes médicos: hipercolesterolemia familiar, padre con infarto a los 55 años.
+Diagnóstico principal: Hiperlipidemia mixta.
+Evolución: Asintomático, hallazgo en analítica de rutina con LDL elevado (190 mg/dl) y triglicéridos en 250 mg/dl. 
+Tratamiento actual: Atorvastatina 20 mg diarios, dieta hipocalórica con énfasis en fibra y pescado azul. 
+Recomendaciones: ejercicio aeróbico moderado 5 veces por semana, reducción de grasas saturadas y ultraprocesados, control lipídico cada 6 meses. 
+Notas adicionales: Paciente comprometido con cambios de estilo de vida, se programa reevaluación en 3 meses.

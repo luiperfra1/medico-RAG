@@ -1,0 +1,58 @@
+Preguntas fáciles (respuestas directas de los documentos)
+
+¿Qué edad tiene Juan Pérez? 
+
+medico1
+
+¿Qué medicamento toma María López para la hipertensión? 
+
+medico2
+
+¿Cuál es el diagnóstico principal de Ana Rodríguez? 
+
+medico4
+
+¿Qué tratamiento recibe Carmen Díaz para el hipotiroidismo?
+
+Preguntas complejas (requieren combinar varias frases dentro de un mismo documento o interpretar evolución y recomendaciones)
+
+¿Por qué Pedro García debe dormir con dos almohadas? 
+
+medico3
+
+¿Qué medidas no farmacológicas se recomendaron a Andrés Ramírez para la apnea del sueño? 
+
+medico7
+
+¿Qué factores contribuyen a la ansiedad de Sofía Martínez y cómo se está tratando actualmente? 
+
+medico8
+
+¿Qué riesgos a largo plazo preocupan a María López respecto a su hipertensión?
+
+
+Preguntas difíciles (requieren integración de varios documentos, razonamiento clínico o interpretación más allá de una sola frase)
+
+¿Qué pacientes presentan dificultades de adherencia al tratamiento y qué factores personales influyen en ello? (ej.: Juan Pérez por olvidos, Carlos Martín por ansiedad, Sofía Martínez con necesidad de apoyo familiar) 
+
+medico1
+
+medico5
+
+medico8
+
+¿Qué pacientes tienen antecedentes familiares relevantes que incrementan su riesgo cardiovascular? (ej.: Juan Pérez – diabetes/hipertensión, Alberto Ruiz – infarto paterno, María López – hipertensión materna) 
+
+medico1
+
+medico2
+
+medico9
+
+Si comparas a Carlos Martín con EPOC y Pedro García con insuficiencia cardíaca, ¿qué similitudes y diferencias hay en sus limitaciones funcionales y necesidades de apoyo? 
+
+medico5
+
+medico3
+
+¿Qué pacientes necesitan intervención psicológica o social además de la médica y por qué? (Juan Pérez, Carlos Martín, Sofía Martínez, Laura Fernández) 

@@ -1,0 +1,55 @@
+Preguntas específicas por paciente
+
+Paciente del archivo 1 (medico1_ext.pdf):
+
+¿Cuál es el diagnóstico principal?
+
+¿Qué tratamiento actual está recibiendo?
+
+¿Qué pruebas complementarias se recomiendan para este caso?
+
+Paciente del archivo 2 (medico2_ext.docx):
+
+¿Qué antecedentes relevantes se describen?
+
+¿Qué plan de seguimiento se indica?
+
+¿Qué notas adicionales aparecen al final del informe?
+
+Paciente del archivo 3 (medico3_ext.txt):
+
+Resume la evolución clínica.
+
+¿Qué recomendaciones educativas se ofrecen?
+
+Paciente del archivo 4 (medico4_ext.md):
+
+¿Qué plan farmacológico se sugiere?
+
+¿Qué objetivos de autocuidado se señalan?
+
+Paciente del archivo 5 (medico5_ext.pdf):
+
+¿En qué plazo debe hacerse la siguiente revisión?
+
+¿Qué advertencia o aviso final incluye el informe?
+
+Preguntas cruzadas entre varios documentos
+
+¿Qué pacientes presentan antecedentes documentados?
+
+¿En qué informes se habla de control de la hipertensión?
+
+¿Cuáles de los pacientes tienen recomendaciones sobre hábitos de vida saludables?
+
+¿Qué pruebas complementarias se repiten en todos los informes?
+
+Preguntas más generales (para probar recall y contexto)
+
+¿Qué pacientes requieren seguimiento en menos de 8 semanas?
+
+¿Qué informes mencionan educación sobre autocuidados?
+
+¿Qué similitudes hay en los planes farmacológicos de los pacientes?
+
+Dame un resumen de los tratamientos actuales de todos los pacientes.

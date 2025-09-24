@@ -1,0 +1,8 @@
+Historia clínica del paciente: Pedro García
+Edad: 70 años
+Antecedentes médicos: hipertensión crónica y episodio de angina de pecho en 2018.
+Diagnóstico principal: Insuficiencia cardíaca leve con fracción de eyección conservada.
+Evolución: Desde hace un año presenta disnea de esfuerzo progresiva, que le obliga a detenerse al caminar más de 200 metros. Ha tenido episodios de edemas leves en tobillos y fatiga matutina. 
+Tratamiento actual: Furosemida 40 mg/día, IECA (enalapril 20 mg/día) y dieta baja en sodio. 
+Recomendaciones: Monitorizar presión arterial y peso corporal semanalmente, evitar exceso de líquidos, mantener reposo relativo pero sin sedentarismo total, dormir con dos almohadas para prevenir ortopnea. 
+Notas adicionales: Vive solo y depende de su hija para compras y cocina. Se recomienda programa de telemedicina para seguimiento.

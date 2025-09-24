@@ -1,0 +1,8 @@
+Historia clínica del paciente: Juan Pérez
+Edad: 54 años
+Antecedentes médicos: padre con diabetes mellitus tipo 2, madre con hipertensión; sobrepeso desde los 30 años.
+Diagnóstico principal: Diabetes tipo 2 con control glucémico irregular.
+Evolución: Desde hace dos años ha presentado aumentos progresivos de glucosa en ayunas, con valores que superan los 180 mg/dl en varias ocasiones. Se han registrado episodios de mareo y visión borrosa, especialmente tras comidas copiosas. 
+Tratamiento actual: Metformina 850 mg dos veces al día. Se añadió insulina basal nocturna hace 3 meses por mal control, aunque refiere olvidos ocasionales. 
+Recomendaciones: Control estricto de glucosa capilar (mínimo 4 veces al día), dieta hipocalórica con restricción de azúcares simples y ultraprocesados, reducción de estrés laboral mediante técnicas de relajación, y ejercicio aeróbico progresivo (caminar 30 min diarios aumentando a 45 min). 
+Notas adicionales: Se observa dificultad para mantener la adherencia. Se considera apoyo de educador en diabetes y psicólogo.
