@@ -58,6 +58,7 @@ El sistema está basado en **RAG (Retrieval-Augmented Generation)**: primero bus
 5. **Instala Ollama y descarga un modelo**:
    ```bash
    ollama pull qwen2.5:3b-instruct
+   ollama pull nomic-embed-text
    ```
 
 ---
