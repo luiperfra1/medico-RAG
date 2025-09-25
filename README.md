@@ -1,29 +1,40 @@
 # 🩺 Asistente de Documentos Médicos (RAG local con LangChain + Ollama)
 
 Este proyecto es una aplicación **Streamlit** que permite subir documentos médicos en varios formatos (PDF, DOCX, TXT, Markdown) y hacer preguntas en lenguaje natural.  
-El sistema usa **RAG (Retrieval-Augmented Generation)**: busca en tus archivos y genera respuestas usando un modelo local de **Ollama** (ej. `qwen2.5:3b-instruct`).
+El sistema está basado en **RAG (Retrieval-Augmented Generation)**: primero busca en tus archivos relevantes y luego genera una respuesta usando un modelo local de **Ollama** (ej. `qwen2.5:3b-instruct`).
 
 ---
 
-## ✨ Funcionalidades
-- Subida de documentos médicos (informes, recetas, resúmenes).  
-- Indexado automático en una base vectorial local (**ChromaDB**).  
-- Consultas en lenguaje natural con respuestas generadas por LLM local.  
-- Opción de **reiniciar índice** (solo borra vectores) o **vaciar todo** (índice + documentos).  
-- Interfaz amigable en navegador con Streamlit.  
-- Configuración flexible de modelo y embeddings desde `.env`.  
+## ✨ Funcionalidades principales
+- 📂 **Subida de documentos médicos** (informes, recetas, resúmenes…).  
+- 🔍 **Indexado automático** en una base vectorial local (**ChromaDB**).  
+- 💬 **Consultas en lenguaje natural** con respuestas generadas por un LLM local.  
+- 🗑️ **Gestión del índice**:  
+  - *Reiniciar índice*: borra solo vectores (los archivos permanecen).  
+  - *Vaciar todo*: borra vectores + archivos subidos y reinicia la app.  
+- 🌐 **Interfaz web sencilla** con Streamlit.  
+- ⚙️ **Configuración flexible** de modelo y embeddings mediante `.env`.  
+
+---
+
+## 📌 Limitaciones conocidas
+- ✅ Ideal para **preguntas concretas** y localizadas (ej.: *“¿Qué tratamiento aparece para la hipertensión de María López?”*).  
+- ⚠️ Menos eficaz en **consultas muy generales o contextos largos**: el sistema fragmenta documentos en *chunks* de ~1000 caracteres y solo pasa unos pocos al modelo (recorte de contexto).  
+- ⏳ El rendimiento depende del modelo elegido y de tu hardware:
+  - En CPU puede ser lento.  
+  - Se recomienda usar GPU o modelos ligeros (`phi3:mini`, `qwen2.5:0.5b`) para mejorar fluidez.  
 
 ---
 
 ## 🚀 Instalación
 
-1. Clona el repositorio:
+1. **Clona el repositorio**:
    ```bash
    git clone https://github.com/luiperfra1/medico-RAG.git
    cd medico-RAG
    ```
 
-2. Crea un entorno virtual:
+2. **Crea un entorno virtual**:
    ```bash
    python -m venv .venv
    # Linux / Mac
@@ -32,19 +43,19 @@ El sistema usa **RAG (Retrieval-Augmented Generation)**: busca en tus archivos y
    .venv\Scripts\activate
    ```
 
-3. Instala dependencias:
+3. **Instala dependencias**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Crea un archivo `.env` en la raíz con:
+4. **Configura variables de entorno** en un archivo `.env` en la raíz:
    ```env
    OLLAMA_MODEL=qwen2.5:3b-instruct
    EMBED_MODEL=nomic-embed-text
    OLLAMA_BASE_URL=http://localhost:11434  # si usas Ollama local
    ```
 
-5. Asegúrate de tener instalado **Ollama** y haber descargado un modelo:
+5. **Instala Ollama y descarga un modelo**:
    ```bash
    ollama pull qwen2.5:3b-instruct
    ```
@@ -53,25 +64,25 @@ El sistema usa **RAG (Retrieval-Augmented Generation)**: busca en tus archivos y
 
 ## ▶️ Uso
 
-1. Inicia la app:
+1. **Inicia la aplicación**:
    ```bash
    streamlit run app/ui.py
    ```
 
-2. Abre en el navegador:
+2. Abre en tu navegador:
    ```
    http://localhost:8501
    ```
 
-3. Pasos en la interfaz:
-   - **Añadir documentos**: arrastra tus PDFs, DOCX, TXT o MD.  
+3. **Flujo de trabajo**:
+   - Arrastra tus documentos (PDF, DOCX, TXT, MD).  
    - Pulsa **Añadir a mi biblioteca** → se indexan automáticamente.  
-   - En **Preguntar a mi biblioteca**, escribe tu pregunta.  
-   - Pulsa **Buscar respuesta** y obtendrás la información localizada.  
+   - Escribe tu pregunta en **Preguntar a mi biblioteca**.  
+   - Pulsa **Buscar respuesta** y verás la respuesta generada a partir de tus documentos.  
 
-4. Opciones en la barra lateral:
-   - **Reiniciar índice** → limpia la base vectorial (los documentos quedan).  
-   - **Vaciar todo** → elimina índice + documentos subidos y reinicia la app.  
+4. **Opciones en la barra lateral**:
+   - *Reiniciar índice*: limpia solo los vectores.  
+   - *Vaciar todo*: borra también los documentos subidos.  
 
 ---
 
@@ -79,10 +90,11 @@ El sistema usa **RAG (Retrieval-Augmented Generation)**: busca en tus archivos y
 
 ```
 app/
- ├─ ui.py          # Interfaz Streamlit
- ├─ rag_chain.py   # Definición de la cadena RAG
-uploads/           # Archivos subidos (ignorado en git)
-vectordb/          # Base vectorial persistente (ignorada en git)
+ ├─ ui.py          # Interfaz Streamlit (subida, preguntas, opciones)
+ ├─ rag_chain.py   # Definición de la cadena RAG (prompt, LLM, retriever)
+ ├─ ingest.py      # Script CLI para indexar documentos desde /data
+uploads/           # Archivos subidos por el usuario (ignorado en git)
+vectordb/          # Base vectorial persistente de Chroma (ignorada en git)
 data/              # Carpeta opcional para ingesta manual
 requirements.txt
 .env.example       # Variables de entorno de ejemplo
@@ -92,7 +104,12 @@ README.md
 ---
 
 ## ⚠️ Notas importantes
-- Los documentos subidos se procesan **localmente** (no se envían a servicios externos).  
-- Rendimiento: los modelos grandes en Ollama pueden tardar bastante en CPU. Se recomienda GPU o modelos pequeños (`phi3:mini`, `qwen2.5:0.5b`).  
+- Todo el procesamiento se hace **en local**: tus documentos no se envían a servidores externos.  
+- Los modelos grandes de Ollama pueden consumir mucha memoria y tardar en CPU.  
+- Para obtener mejores resultados:  
+  - Haz preguntas **específicas**.  
+  - Sube documentos bien estructurados (informes, recetas, resúmenes claros).  
+  - Usa GPU o modelos pequeños si buscas rapidez.  
 
 ---
+
