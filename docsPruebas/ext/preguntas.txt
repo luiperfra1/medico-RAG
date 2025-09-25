@@ -1,55 +1,61 @@
-Preguntas específicas por paciente
+# Preguntas específicas por paciente
 
-Paciente del archivo 1 (medico1_ext.pdf):
+## Juan Pérez (54 años, Diabetes tipo 2)
+- ¿Cuál es el diagnóstico principal de Juan Pérez?
+- ¿Qué tratamiento está recibiendo actualmente Juan Pérez?
+- ¿Qué pruebas complementarias se recomiendan para Juan Pérez?
+- ¿Qué dificultades tiene Juan Pérez para mantener la adherencia al tratamiento?
 
-¿Cuál es el diagnóstico principal?
+## María López (36 años, Hipertensión arterial)
+- ¿Qué antecedentes familiares relevantes tiene María López?
+- ¿Qué tratamiento antihipertensivo toma María López y desde cuándo?
+- ¿Qué plan de seguimiento está indicado para María López?
+- ¿Qué preocupaciones expresa María López respecto a su enfermedad?
 
-¿Qué tratamiento actual está recibiendo?
+## Pedro García (70 años, Insuficiencia cardíaca leve)
+- ¿Cuál es el diagnóstico principal de Pedro García?
+- ¿Qué síntomas presenta Pedro García al caminar o realizar esfuerzos?
+- ¿Qué recomendaciones educativas recibe Pedro García en su informe?
+- ¿Qué notas adicionales se mencionan sobre la vida diaria de Pedro García?
 
-¿Qué pruebas complementarias se recomiendan para este caso?
+## Ana Rodríguez (28 años, Asma bronquial)
+- ¿Cuál es el tratamiento de mantenimiento y de crisis que utiliza Ana Rodríguez?
+- ¿Qué antecedentes alérgicos tiene Ana Rodríguez?
+- ¿Qué limitaciones físicas describe Ana Rodríguez debido a su enfermedad?
+- ¿Qué actividades deportivas realiza Ana Rodríguez que mejoran su estado?
 
-Paciente del archivo 2 (medico2_ext.docx):
+## Carlos Martín (62 años, EPOC)
+- ¿Cuál es el diagnóstico principal de Carlos Martín?
+- ¿Qué tratamiento farmacológico y complementario sigue Carlos Martín?
+- ¿Qué síntomas principales presenta Carlos Martín en su vida diaria?
+- ¿Qué apoyo adicional se recomienda para Carlos Martín?
 
-¿Qué antecedentes relevantes se describen?
+---
 
-¿Qué plan de seguimiento se indica?
+# Preguntas intermedias (comparación o relación entre 2 personas)
 
-¿Qué notas adicionales aparecen al final del informe?
+- ¿Qué diferencias hay entre el tratamiento de Juan Pérez y María López?
+- ¿Qué síntomas comparten Pedro García y Carlos Martín?
+- ¿En qué se parecen las recomendaciones educativas dadas a María López y Ana Rodríguez?
+- ¿Quién de entre Juan Pérez y Carlos Martín tiene más dificultades de adherencia al tratamiento?
 
-Paciente del archivo 3 (medico3_ext.txt):
+---
 
-Resume la evolución clínica.
+# Preguntas cruzadas entre varios documentos
 
-¿Qué recomendaciones educativas se ofrecen?
+- ¿Qué pacientes tienen antecedentes familiares relevantes?
+- ¿En qué informes se habla de hipertensión arterial?
+- ¿Qué pacientes han recibido recomendaciones sobre hábitos de vida saludables?
+- ¿Qué pruebas complementarias se mencionan en todos los informes médicos?
+- ¿Qué pacientes requieren apoyo psicológico además del tratamiento médico?
 
-Paciente del archivo 4 (medico4_ext.md):
+---
 
-¿Qué plan farmacológico se sugiere?
+# Preguntas más generales (para probar contexto amplio)
 
-¿Qué objetivos de autocuidado se señalan?
-
-Paciente del archivo 5 (medico5_ext.pdf):
-
-¿En qué plazo debe hacerse la siguiente revisión?
-
-¿Qué advertencia o aviso final incluye el informe?
-
-Preguntas cruzadas entre varios documentos
-
-¿Qué pacientes presentan antecedentes documentados?
-
-¿En qué informes se habla de control de la hipertensión?
-
-¿Cuáles de los pacientes tienen recomendaciones sobre hábitos de vida saludables?
-
-¿Qué pruebas complementarias se repiten en todos los informes?
-
-Preguntas más generales (para probar recall y contexto)
-
-¿Qué pacientes requieren seguimiento en menos de 8 semanas?
-
-¿Qué informes mencionan educación sobre autocuidados?
-
-¿Qué similitudes hay en los planes farmacológicos de los pacientes?
-
-Dame un resumen de los tratamientos actuales de todos los pacientes.
+- ¿Qué pacientes requieren seguimiento en menos de 8 semanas?
+- ¿Qué informes mencionan educación sobre autocuidados?
+- ¿Qué similitudes existen en los planes farmacológicos de los diferentes pacientes?
+- Dame un resumen de los tratamientos actuales de todos los pacientes.
+- Indica los nombres de los pacientes que tienen más de 5 años con su enfermedad.
+- ¿Qué pacientes presentan limitaciones físicas importantes en su vida diaria?

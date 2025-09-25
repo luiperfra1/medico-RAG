@@ -1,58 +1,102 @@
-Preguntas fáciles (respuestas directas de los documentos)
+# Preguntas específicas por paciente
 
-¿Qué edad tiene Juan Pérez? 
+## Juan Pérez (54 años, Diabetes tipo 2)
+- ¿Cuál es el diagnóstico principal de Juan Pérez?
+- ¿Qué tratamiento actual sigue Juan Pérez?
+- ¿Qué complicaciones presenta Juan Pérez debido al mal control de la glucosa?
+- ¿Qué apoyo adicional se recomienda para Juan Pérez?
 
-medico1
+## María López (36 años, Hipertensión arterial)
+- ¿Qué antecedentes familiares presenta María López?
+- ¿Qué tratamiento antihipertensivo toma María López?
+- ¿Qué recomendaciones de estilo de vida recibe María López?
+- ¿Qué preocupaciones expresa María López respecto a complicaciones futuras?
 
-¿Qué medicamento toma María López para la hipertensión? 
+## Pedro García (70 años, Insuficiencia cardíaca leve)
+- ¿Cuál es el diagnóstico principal de Pedro García?
+- ¿Qué limitaciones físicas tiene Pedro García en su vida diaria?
+- ¿Qué recomendaciones educativas recibe Pedro García?
+- ¿Qué apoyo tecnológico se sugiere para Pedro García?
 
-medico2
+## Ana Rodríguez (28 años, Asma bronquial)
+- ¿Qué síntomas predominan en Ana Rodríguez en primavera?
+- ¿Qué tratamiento de mantenimiento utiliza Ana Rodríguez?
+- ¿Qué antecedentes alérgicos presenta Ana Rodríguez?
+- ¿Qué actividades físicas le ayudan a mejorar su estado?
 
-¿Cuál es el diagnóstico principal de Ana Rodríguez? 
+## Carlos Martín (62 años, EPOC)
+- ¿Cuál es el diagnóstico principal de Carlos Martín?
+- ¿Qué tratamiento farmacológico sigue Carlos Martín?
+- ¿Qué síntomas principales experimenta Carlos Martín?
+- ¿Qué apoyo psicológico o social se recomienda a Carlos Martín?
 
-medico4
+## Laura Fernández (45 años, Artritis reumatoide)
+- ¿Cuál es el diagnóstico principal de Laura Fernández?
+- ¿Qué tratamiento farmacológico está indicado para Laura Fernández?
+- ¿Qué dificultades laborales o domésticas refiere Laura Fernández?
+- ¿Qué apoyo se sugiere para mejorar la vida diaria de Laura Fernández?
 
-¿Qué tratamiento recibe Carmen Díaz para el hipotiroidismo?
+## Andrés Ramírez (60 años, Apnea del sueño)
+- ¿Qué síntomas principales presenta Andrés Ramírez?
+- ¿Qué tratamiento actual utiliza Andrés Ramírez para la apnea?
+- ¿Qué recomendaciones de estilo de vida recibe Andrés Ramírez?
+- ¿Qué motivación personal menciona Andrés Ramírez?
 
-Preguntas complejas (requieren combinar varias frases dentro de un mismo documento o interpretar evolución y recomendaciones)
+## Sofía Martínez (30 años, Trastorno de ansiedad)
+- ¿Cuál es el diagnóstico principal de Sofía Martínez?
+- ¿Qué tratamiento combina Sofía Martínez (farmacológico y psicológico)?
+- ¿Qué antecedentes familiares tiene Sofía Martínez?
+- ¿Qué apoyo necesita Sofía Martínez para prevenir recaídas?
 
-¿Por qué Pedro García debe dormir con dos almohadas? 
+## Alberto Ruiz (50 años, Hiperlipidemia mixta)
+- ¿Qué hallazgos se encontraron en los análisis de Alberto Ruiz?
+- ¿Qué tratamiento farmacológico sigue Alberto Ruiz?
+- ¿Qué recomendaciones dietéticas recibe Alberto Ruiz?
+- ¿En qué plazo se programa la reevaluación de Alberto Ruiz?
 
-medico3
+## Carmen Díaz (40 años, Hipotiroidismo clínico)
+- ¿Qué síntomas principales presenta Carmen Díaz?
+- ¿Qué tratamiento toma Carmen Díaz actualmente?
+- ¿Qué recomendaciones se le hacen respecto a controles y dieta?
+- ¿Qué ajuste terapéutico se considera para Carmen Díaz?
 
-¿Qué medidas no farmacológicas se recomendaron a Andrés Ramírez para la apnea del sueño? 
+## Eduardo Casanovas (4 años, diagnóstico en revisión)
+- ¿Cuál es el diagnóstico principal que se describe para Eduardo Casanovas?
+- ¿Qué síntomas se mencionan en la evolución clínica de Eduardo Casanovas?
+- ¿Qué tratamiento se está aplicando actualmente a Eduardo Casanovas?
+- ¿Qué recomendaciones de seguimiento se señalan para Eduardo Casanovas?
+- ¿Qué notas adicionales aparecen en el informe de Eduardo Casanovas?
 
-medico7
+---
 
-¿Qué factores contribuyen a la ansiedad de Sofía Martínez y cómo se está tratando actualmente? 
+# Preguntas intermedias (comparación entre dos pacientes)
 
-medico8
+- ¿Qué diferencias existen entre el tratamiento de Juan Pérez y el de María López?
+- ¿Qué síntomas comunes presentan Carlos Martín y Pedro García?
+- ¿Qué similitudes tienen las recomendaciones de estilo de vida de María López y Alberto Ruiz?
+- ¿Qué pacientes (entre Ana Rodríguez y Andrés Ramírez) tienen más relación con problemas respiratorios?
+- ¿Qué diferencias hay entre el caso de Eduardo Casanovas y el de Carmen Díaz?
 
-¿Qué riesgos a largo plazo preocupan a María López respecto a su hipertensión?
+---
 
+# Preguntas cruzadas entre varios pacientes
 
-Preguntas difíciles (requieren integración de varios documentos, razonamiento clínico o interpretación más allá de una sola frase)
+- ¿Qué pacientes tienen antecedentes familiares relevantes?
+- ¿En qué informes se mencionan problemas cardiovasculares?
+- ¿Qué pacientes han recibido recomendaciones sobre control del peso?
+- ¿Qué enfermedades crónicas requieren revisiones periódicas en todos los pacientes?
+- ¿Qué pacientes necesitan apoyo psicológico o social adicional?
+- ¿Qué pacientes presentan síntomas de fatiga persistente (incluyendo a Eduardo Casanovas)?
 
-¿Qué pacientes presentan dificultades de adherencia al tratamiento y qué factores personales influyen en ello? (ej.: Juan Pérez por olvidos, Carlos Martín por ansiedad, Sofía Martínez con necesidad de apoyo familiar) 
+---
 
-medico1
+# Preguntas generales
 
-medico5
-
-medico8
-
-¿Qué pacientes tienen antecedentes familiares relevantes que incrementan su riesgo cardiovascular? (ej.: Juan Pérez – diabetes/hipertensión, Alberto Ruiz – infarto paterno, María López – hipertensión materna) 
-
-medico1
-
-medico2
-
-medico9
-
-Si comparas a Carlos Martín con EPOC y Pedro García con insuficiencia cardíaca, ¿qué similitudes y diferencias hay en sus limitaciones funcionales y necesidades de apoyo? 
-
-medico5
-
-medico3
-
-¿Qué pacientes necesitan intervención psicológica o social además de la médica y por qué? (Juan Pérez, Carlos Martín, Sofía Martínez, Laura Fernández) 
+- ¿Qué pacientes requieren revisiones en menos de 8 semanas?
+- ¿Qué informes mencionan educación sobre autocuidados?
+- ¿Qué pacientes reciben combinaciones de fármacos y cambios de estilo de vida?
+- ¿Qué similitudes se observan en los planes farmacológicos de los pacientes?
+- Dame un resumen de los tratamientos actuales de todos los pacientes.
+- Indica los nombres de los pacientes mayores de 55 años y sus diagnósticos principales.
+- Indica los nombres de los pacientes menores de 18 años y sus diagnósticos principales.
+- ¿Qué pacientes presentan limitaciones físicas significativas en su vida diaria?
