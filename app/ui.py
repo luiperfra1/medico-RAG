@@ -142,44 +142,92 @@ def _ingest_paths(paths: Iterable[Path]) -> int:
 # -------------------------------------------------------------------------
 # Acciones de mantenimiento del índice y del estado de la app
 # -------------------------------------------------------------------------
-def _reset_vectordb_soft() -> Tuple[bool, str]:
+def _drop_chroma_collection() -> None:
+    try:
+        load_dotenv(override=True)
+        base_url = os.getenv("OLLAMA_BASE_URL")
+        embed_model = os.getenv("EMBED_MODEL", "nomic-embed-text")
+
+        embeddings = OllamaEmbeddings(model=embed_model, base_url=base_url)
+        vectordb = Chroma(
+            persist_directory=str(VECTOR_DIR),
+            collection_name=COLLECTION,
+            embedding_function=embeddings,
+        )
+        # Vaciar documentos por si delete_collection no está disponible en tu versión
+        try:
+            vectordb._collection.delete(where={})
+        except Exception:
+            pass
+        # Borrar la colección (si está soportado)
+        try:
+            vectordb.delete_collection()
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+def _index_count() -> int:
     """
-    Reinicio robusto del índice vectorial:
-      - Limpia caches (libera conexiones)
-      - Intenta borrar con reintentos
-      - Si falla, renombra la carpeta y programa borrado en reinicio
+    Devuelve el número de embeddings en la colección persistida.
+    Si no existe, devuelve 0.
     """
     try:
-        # 1) Cerrar recursos/cachés
+        load_dotenv(override=True)
+        base_url = os.getenv("OLLAMA_BASE_URL")
+        embed_model = os.getenv("EMBED_MODEL", "nomic-embed-text")
+
+        embeddings = OllamaEmbeddings(model=embed_model, base_url=base_url)
+        vectordb = Chroma(
+            persist_directory=str(VECTOR_DIR),
+            collection_name=COLLECTION,
+            embedding_function=embeddings,
+        )
+        # API interna pero fiable para contar
+        return int(vectordb._collection.count())
+    except Exception:
+        return 0
+
+def _reset_vectordb_soft() -> Tuple[bool, str]:
+    """
+    Reinicia el índice vectorial (solo vectores):
+      - Suelta la colección Chroma (libera locks de SQLite).
+      - Intenta borrar la carpeta del índice con reintentos.
+      - Si falla, la renombra para borrado diferido en el próximo arranque.
+      - Invalida caché y fuerza recarga de la app.
+    """
+    try:
+        # 0) Limpiar cachés y soltar colección para evitar locks
         st.cache_resource.clear()
         gc.collect()
         time.sleep(0.25)
+        _drop_chroma_collection()
 
         vdir = Path(VECTOR_DIR)
-        if not vdir.exists():
-            return True, "Índice reiniciado."
+        if vdir.exists():
+            # 1) Intentar borrado con reintentos
+            if not _try_delete_dir(vdir):
+                # 2) Plan B: renombrar y borrar más tarde
+                tomb = vdir.with_name(vdir.name + f"_to_delete_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}")
+                try:
+                    os.replace(vdir, tomb)
+                    st.session_state["pending_delete"] = str(tomb)
+                except Exception as e:
+                    return False, f"No se pudo reiniciar (borrar/renombrar): {e}"
 
-        # 2) Reintentos de borrado
-        if _try_delete_dir(vdir):
-            return True, "Índice reiniciado."
+        # 3) Invalidar caché de la cadena y refrescar UI
+        st.session_state["index_version"] = int(time.time())
+        st.rerun()  # fuerza recarga para que _get_chain() se reconstruya
 
-        # 3) Plan B: renombrar y borrar luego
-        tomb = vdir.with_name(vdir.name + f"_to_delete_{datetime.datetime.now().strftime('%H%M%S')}")
-        try:
-            os.replace(vdir, tomb)   # mueve la carpeta incluso con algunos ficheros bloqueados
-            st.session_state["pending_delete"] = str(tomb)
-            return True, "Índice reiniciado (se terminará de limpiar al reiniciar la app)."
-        except Exception as e:
-            return False, f"No se pudo reiniciar: {e}"
-
+        return True, "Índice reiniciado."
     except Exception as e:
         return False, f"No se pudo reiniciar: {e}"
 
 
+
 def _wipe_all() -> Tuple[bool, str]:
     """
-    Borra índice + archivos subidos y reinicia la app.
-    Devuelve (ok, mensaje) para mostrar feedback consistente en la UI.
+    Borra índice + archivos subidos y reinicia la app (con fallback robusto en Windows).
     """
     try:
         # Cerrar caches para soltar locks del índice
@@ -187,27 +235,35 @@ def _wipe_all() -> Tuple[bool, str]:
         gc.collect()
         time.sleep(0.25)
 
-        # Borrar índice
-        vdir = Path(VECTOR_DIR)
-        if vdir.exists() and not _try_delete_dir(vdir):
-            return False, "No se pudo borrar el índice."
+        # 0) Soltar/limpiar la colección Chroma en disco (evita locks de SQLite)
+        _drop_chroma_collection()
 
-        # Borrar subidas
+        # 1) Borrar (o renombrar) índice
+        vdir = Path(VECTOR_DIR)
+        if vdir.exists():
+            if not _try_delete_dir(vdir):
+                tomb = vdir.with_name(vdir.name + f"_trash_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}")
+                try:
+                    os.replace(vdir, tomb)   # mueve la carpeta aunque haya ficheros bloqueados
+                    st.session_state["pending_delete"] = str(tomb)  # se intentará borrar al arrancar
+                except Exception as e:
+                    return False, f"No se pudo borrar/renombrar el índice: {e}"
+
+        # 2) Borrar subidas
         if UPLOAD_DIR.exists() and not _try_delete_dir(UPLOAD_DIR):
             return False, "No se pudieron borrar las subidas."
 
-        # Limpiar estado de sesión
+        # 3) Limpiar estado y forzar nueva clave de cache
         st.session_state.clear()
-
-        # Forzar nueva key del uploader
+        st.session_state["index_version"] = int(time.time())  # clave nueva para invalidar _get_chain
         st.session_state["uploader_key"] = f"uploader_{time.time()}"
 
-        # Reiniciar la app
-        st.rerun()
-        # Nota: st.rerun corta el flujo; si llegamos aquí, devolvemos ok igualmente.
+        st.rerun()  # reinicia la app
         return True, "Todo vaciado correctamente."
     except Exception as e:
         return False, f"No se pudo vaciar todo: {e}"
+
+
 
 
 # -------------------------------------------------------------------------
@@ -287,16 +343,23 @@ def main() -> None:
     ask = st.button("Buscar respuesta", use_container_width=True)
 
     if ask and q.strip():
-        with st.spinner("Buscando en tus documentos..."):
-            answer = chain.invoke(q.strip())
+        n = _index_count()
         st.subheader("Respuesta")
-        st.write(answer)
+        if n == 0:
+            st.write("No hay documentos indexados ahora mismo. Sube archivos y vuelve a intentarlo.")
+        else:
+            with st.spinner("Buscando en tus documentos..."):
+                answer = chain.invoke(q.strip())
+            st.write(answer)
+
+
 
     # Lateral: estado y mantenimiento
     with st.sidebar:
         st.markdown("#### Mi biblioteca")
         total_uploads = sum(1 for _ in UPLOAD_DIR.glob("*")) if UPLOAD_DIR.exists() else 0
         st.write(f"Archivos en ‘subidas’: {total_uploads}")
+        st.write(f"Fragmentos indexados: {_index_count()}")
 
         st.markdown("#### Opciones")
         if st.button("Reiniciar índice (solo vectores)"):

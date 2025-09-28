@@ -13,7 +13,7 @@ from langchain_core.output_parsers import StrOutputParser
 
 # === Configuración base del vector store ===
 # Usar Path (no str) evita ambigüedades con rutas relativas/absolutas
-VECTOR_DIR = Path("vectordb")
+VECTOR_DIR = Path(__file__).resolve().parent.parent / "vectordb"   # <-- antes: Path("vectordb")
 COLLECTION = "rag_store"
 
 # === Prompt del sistema ===
