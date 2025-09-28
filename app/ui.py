@@ -346,11 +346,17 @@ def main() -> None:
         n = _index_count()
         st.subheader("Respuesta")
         if n == 0:
-            st.write("No hay documentos indexados ahora mismo. Sube archivos y vuelve a intentarlo.")
+            st.write("No hay documentos indexados ahora mismo.")
         else:
             with st.spinner("Buscando en tus documentos..."):
+                # Si la pregunta es muy general, forzar k=n
+                if "todos" in q.lower() or "resumen" in q.lower():
+                    chain = build_chain(k=n) 
+                else:
+                    chain = build_chain(k=8)   # normal, limitado
                 answer = chain.invoke(q.strip())
             st.write(answer)
+
 
 
 

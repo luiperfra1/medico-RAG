@@ -42,7 +42,7 @@ def format_docs(docs) -> str:
     """
     return "\n\n".join(
         f"- {d.metadata.get('source', '?')}: {d.page_content}"
-        for d in docs[:6]
+        for d in docs[:10]
     )
 
 
