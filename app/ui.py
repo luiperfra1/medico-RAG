@@ -351,14 +351,11 @@ def main() -> None:
             with st.spinner("Buscando en tus documentos..."):
                 # Si la pregunta es muy general, forzar k=n
                 if "todos" in q.lower() or "resumen" in q.lower():
-                    chain = build_chain(k=n) 
+                    chain = build_chain(k=n)   # trae todos los chunks
                 else:
-                    chain = build_chain(k=8)   # normal, limitado
+                    chain = build_chain(k=20)   # normal, limitado
                 answer = chain.invoke(q.strip())
             st.write(answer)
-
-
-
 
     # Lateral: estado y mantenimiento
     with st.sidebar:
