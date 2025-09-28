@@ -353,7 +353,7 @@ def main() -> None:
                 if "todos" in q.lower() or "resumen" in q.lower():
                     chain = build_chain(k=n)   # trae todos los chunks
                 else:
-                    chain = build_chain(k=20)   # normal, limitado
+                    chain = build_chain(k=15)   # normal, limitado
                 answer = chain.invoke(q.strip())
             st.write(answer)
 
