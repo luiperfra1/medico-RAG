@@ -37,7 +37,6 @@ Q_PROMPT = ChatPromptTemplate.from_messages(
 def format_docs(docs) -> str:
     """
     Convierte los documentos recuperados en un bloque de texto legible.
-    - Limita a los 6 primeros para evitar prompt demasiado largo.
     - Incluye 'source' si está disponible para trazabilidad.
     """
     return "\n\n".join(

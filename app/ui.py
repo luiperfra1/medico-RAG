@@ -405,7 +405,7 @@ def main() -> None:
             with st.spinner("Buscando en tus documentos..."):
                 k, kind = choose_k_for(q, n)
                 # reconstruimos la cadena con k adaptativo
-                chain = build_chain(k=k)  # sin tocar rag_chain.py
+                chain = build_chain(k=k)
                 answer = chain.invoke(q.strip())
             st.caption(f"Modo: {kind} · k={k} · corpus={n}")
             st.write(answer)
