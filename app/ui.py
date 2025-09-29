@@ -6,6 +6,7 @@ import os
 import shutil
 import stat
 import time
+import re
 import datetime
 from pathlib import Path
 from typing import Iterable, List, Tuple
@@ -31,6 +32,59 @@ DATA_DIR = ROOT / "data"        # Carpeta opcional para arrastrar ficheros fuera
 
 st.set_page_config(page_title="Asistente de Documentos Médicos", layout="wide")
 
+# -------------------------------------------------------------------------
+# Heurísticas ligeras para distinguir pregunta general vs individual
+# -------------------------------------------------------------------------
+GENERAL_HINTS = {
+    "todos", "todas", "resumen", "resúmen", "listar", "lista",
+    "global", "conjunto", "compar", "comparar", "comparativa",
+    "cuantos", "cuántos", "cuantas", "cuántas",
+    "porcentaje", "media", "promedio", "estadística", "estadisticas", "estadísticas",
+    "overview", "síntesis", "sintesis", "general"
+}
+
+# Patrón sencillo de "nombre y apellidos" con mayúsculas
+NAME_LIKE = re.compile(r"\b[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)+\b")
+
+def looks_individual(q: str) -> bool:
+    ql = q.lower()
+
+    # Pistas de agregado directas
+    if any(w in ql for w in GENERAL_HINTS):
+        return False
+
+    #Como se llaman las personas que hay en los documentos la da bien pero detecta como individual, lo suyo sería una LLM clasificatoria o algo
+
+    
+    # Construcciones típicas de agregado: "quiénes/qué pacientes ... más/menos/todos"
+    if re.search(r"\b(quiénes|quienes|cuáles|cuales|pacientes|casos|documentos)\b", ql) and \
+       re.search(r"\b(más|menos|todos|todas|mayor|menor|>|\d+\s*(años|casos|pacientes))\b", ql):
+        return False
+
+    # Señales de individual: nombre propio, id, doc concreto
+    if NAME_LIKE.search(q) or re.search(r"\b(historia|nº|numero|id|folio|informe|medico\d+|pdf|docx|txt)\b", ql):
+        return True
+
+    # Consultas muy cortas y específicas tienden a ser individuales
+    if len(q.split()) <= 8 and not any(w in ql for w in ("lista", "resumen", "todos", "todas")):
+        return True
+
+    # Por defecto, asumir individual si no "huele" a agregado
+    return True
+
+def choose_k_for(q: str, n_docs: int) -> tuple[int, str]:
+    """
+    Devuelve (k, kind). kind ∈ {"individual","general"}.
+    - General: k más alto (10–25% del corpus, acotado 20–80).
+    - Individual: k medio-bajo (8–15) para precisión y latencia.
+    """
+    if looks_individual(q):
+        k = min(15, max(8, (n_docs // 50) or 8))  # 8–15
+        return k, "individual"
+    else:
+        base = max(20, int(0.15 * n_docs))        # ~15% del índice
+        k = min(max(base, 20), 80)                # acotado 20–80
+        return k, "general"
 
 # -------------------------------------------------------------------------
 # Utilidades de sistema y limpieza (pensadas para Windows y ficheros bloqueados)
@@ -349,13 +403,13 @@ def main() -> None:
             st.write("No hay documentos indexados ahora mismo.")
         else:
             with st.spinner("Buscando en tus documentos..."):
-                # Si la pregunta es muy general, forzar k=n
-                if "todos" in q.lower() or "resumen" in q.lower():
-                    chain = build_chain(k=n)   # trae todos los chunks
-                else:
-                    chain = build_chain(k=15)   # normal, limitado
+                k, kind = choose_k_for(q, n)
+                # reconstruimos la cadena con k adaptativo
+                chain = build_chain(k=k)  # sin tocar rag_chain.py
                 answer = chain.invoke(q.strip())
+            st.caption(f"Modo: {kind} · k={k} · corpus={n}")
             st.write(answer)
+
 
     # Lateral: estado y mantenimiento
     with st.sidebar:
